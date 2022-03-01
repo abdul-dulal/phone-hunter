@@ -1,20 +1,32 @@
 // catch  input value
 const searchPhone = () => {
-  //   console.log("heloo");
   const inputField = document.getElementById("input-field");
   const inputFieldText = inputField.value;
-  // clear input
-  inputField.value = "";
-  const url = `https://openapi.programming-hero.com/api/phones?search=${inputFieldText}`;
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => displayPhone(data.data));
+
+  if (inputFieldText == "") {
+    console.log("hello");
+  } else {
+    // clear input
+    inputField.value = "";
+    const url = `https://openapi.programming-hero.com/api/phones?search=${inputFieldText}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.data.length == []) {
+          console.log("hello");
+        } else {
+          displayPhone(data.data);
+        }
+      });
+  }
 };
 
 // phone details
 const displayPhone = (phones) => {
   // console.log(phones);
   const container = document.getElementById("container");
+
+  container.textContent = "";
   phones.forEach((phone) => {
     const div = document.createElement("div");
     div.classList.add("col");
@@ -48,8 +60,8 @@ const showDeatils = (details) => {
 };
 
 const showMoreDetails = (phoneSlug) => {
-  console.log(phoneSlug);
   const detailsShow = document.getElementById("detailsShow");
+  detailsShow.textContent = "";
   const div = document.createElement("div");
   div.innerHTML = `
   <div class="card  w-50 mx-auto">
