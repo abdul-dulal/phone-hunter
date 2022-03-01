@@ -1,3 +1,4 @@
+// catch  input value
 const searchPhone = () => {
   //   console.log("heloo");
   const inputField = document.getElementById("input-field");
@@ -10,6 +11,7 @@ const searchPhone = () => {
     .then((data) => displayPhone(data.data));
 };
 
+// phone details
 const displayPhone = (phones) => {
   console.log(phones);
   const container = document.getElementById("container");
@@ -33,23 +35,26 @@ const displayPhone = (phones) => {
   });
 };
 
-const showDeatils = (deatils) => {
+// id releted Details show
+
+const showDeatils = (details) => {
   //   console.log(deatils);
-  const url = `https://openapi.programming-hero.com/api/phone/${deatils}`;
+  const url = `https://openapi.programming-hero.com/api/phone/${details}`;
 
   fetch(url)
     .then((res) => res.json())
-    .then((data) => showMoreDeatils(data.data));
+    .then((data) => showMoreDetails(data.data));
 };
 
-const showMoreDeatils = (phoneSlug) => {
+const showMoreDetails = (phoneSlug) => {
   console.log(phoneSlug);
-  const deatilsShow = document.getElementById("deatilsShow");
+  const detailsShow = document.getElementById("detailsShow");
   const div = document.createElement("div");
   div.innerHTML = `
-  <div class="card text-center w-25 mx-auto">
+  <div class="card  w-25 mx-auto">
   <img src="${phoneSlug.image}" class="card-img-top" alt="..." />
   <div class="card-body">
+  <h4 class="card-title">${phoneSlug.name}</h4>
  <p>${phoneSlug.releaseDate ? phoneSlug.releaseDate : "not found"}
     
   </p>
@@ -66,5 +71,5 @@ const showMoreDeatils = (phoneSlug) => {
   </div>
 </div>
   `;
-  deatilsShow.appendChild(div);
+  detailsShow.appendChild(div);
 };
