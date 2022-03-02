@@ -1,10 +1,26 @@
+// style Function
+const empty = (style) => {
+  document.getElementById("empty").style.display = style;
+};
+
+const notFound = (style) => {
+  document.getElementById("notFound").style.display = style;
+};
+
 // catch  input value
 const searchPhone = () => {
   const inputField = document.getElementById("input-field");
   const inputFieldText = inputField.value;
 
+  const container = document.getElementById("container");
+  container.textContent = "";
+  document.getElementById("spiner").style.display = "block";
   if (inputFieldText == "") {
-    console.log("hello");
+    document.getElementById("spiner").style.display = "none";
+    empty("block");
+    notFound("none");
+    const detailsShow = document.getElementById("detailsShow");
+    detailsShow.textContent = "";
   } else {
     // clear input
     inputField.value = "";
@@ -13,9 +29,16 @@ const searchPhone = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.data.length == []) {
-          console.log("hello");
+          document.getElementById("spiner").style.display = "none";
+          notFound("block");
+          empty("none");
+          const detailsShow = document.getElementById("detailsShow");
+          detailsShow.textContent = "";
         } else {
-          displayPhone(data.data);
+          // displayAllPhone(data.data);
+
+          // const result = displayPhoneAll.slice(0, 20);
+          displayPhone(data.data.slice(0, 20));
         }
       });
   }
@@ -25,8 +48,10 @@ const searchPhone = () => {
 const displayPhone = (phones) => {
   // console.log(phones);
   const container = document.getElementById("container");
-
+  document.getElementById("spiner").style.display = "none";
   container.textContent = "";
+  empty("none");
+  notFound("none");
   phones.forEach((phone) => {
     const div = document.createElement("div");
     div.classList.add("col");
@@ -41,6 +66,7 @@ const displayPhone = (phones) => {
         <button class="btn btn-primary rounded mt-3" onclick="showDeatils('${phone.slug}') "> More Deatils</button>
       </div>
   </div>
+  
     
     `;
     container.appendChild(div);
@@ -63,8 +89,9 @@ const showMoreDetails = (phoneSlug) => {
   const detailsShow = document.getElementById("detailsShow");
   detailsShow.textContent = "";
   const div = document.createElement("div");
+
   div.innerHTML = `
-  <div class="card  w-50 mx-auto">
+  <div class="card  w-50 mx-auto modifi">
   <img src="${
     phoneSlug.image
   }"  class="card-img-top w-25 p-3 h-25 mx-auto" alt="..." />
@@ -97,8 +124,11 @@ const showMoreDetails = (phoneSlug) => {
      <li> <span>USB : </span> ${phoneSlug.others.USB} </li>
      <li> <span>WLAN : </span> ${phoneSlug.others.WLAN} </li>
     </ul>
+    
   </div>
+  
 </div>
   `;
+
   detailsShow.appendChild(div);
 };

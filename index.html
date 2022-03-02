@@ -12,7 +12,7 @@
   <body>
     <h2 class="text-center mt-3">My Awsome Phone</h2>
     <!-- input Field -->
-    <div class="input-group mb-3 w-25 mx-auto mt-3">
+    <div class="input-group mb-3 w-25 mx-auto mt-3 modifi-input">
       <input
         type="text"
         id="input-field"
@@ -27,6 +27,21 @@
         Search
       </button>
     </div>
+    <div class="text-center" id="spiner">
+      <img
+        src="img/loading-running.gif"
+        height="150"
+        width="150"
+        class="mx-auto"
+        alt=""
+      />
+    </div>
+
+    <!-- phone not  found -->
+    <p class="notFound" id="notFound">Phone Not Found 🥲🥲🥲</p>
+    <p class="text-danger text-center" id="empty">
+      empty value!!! Please Search Right keyword
+    </p>
     <!--  id releted details show -->
     <div class="container" id="detailsShow"></div>
 

@@ -6,3 +6,41 @@ ul li span {
   font-weight: 500;
   padding: 5px;
 }
+.notFound {
+  height: 60px;
+  width: 250px;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  background: #222436;
+  margin-top: 20px;
+  border-radius: 15px;
+  padding: 5px 20px;
+  display: none;
+}
+#empty {
+  display: none;
+  font-size: 25px;
+}
+
+.button {
+  display: none;
+}
+
+/* loading spiner */
+
+#spiner {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .modifi {
+    width: 100% !important;
+  }
+  .modifi img {
+    width: 75% !important;
+  }
+  .modifi-input {
+    width: 95% !important;
+  }
+}
